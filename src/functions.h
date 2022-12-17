@@ -1,12 +1,18 @@
-#include <string>
-using namespace std;
-
 #ifndef functions
 #define functions
 
-int  convert_in(string,string[2],string,string[5],string[52]);
-void mergeSort(int *array,int const,int const);
-void calculate(string[5],string[2],int[2]);
-void odds(string[52],string[5],string[2]);
+#include <string>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+string add_spaces(string);
+void calculate(vector<int>,int[2]);
+void combinations(vector<int>,int,int[],int,int,
+		  vector<int>,int[9]);
+int  convert_in(string,vector<int>&);
+void odds(vector<int>);
+void preform_calc(vector<int>,int[],int,int[9]);
+void quickSort(int[],int,int);
 
 #endif

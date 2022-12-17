@@ -1,0 +1,12 @@
+
+			Poker Statistics
+
+Poker program to track statistics around the table. Stores user's
+information over any number of tables.
+
+poker [--odds]
+
+Odds option will call poker_odds to print odds of hitting each combination
+at showdown. (?? for each cards value and suit AS, 2H, TC, JD, ...)
+
+poker_odds [--hand/-h ????] [--board/-b ??????...] [--off]

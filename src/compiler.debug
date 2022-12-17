@@ -1,0 +1,3 @@
+COMPILE   = g++
+FLAGS     = -g -std=c++11 -D DEBUG
+LIBRARIES =

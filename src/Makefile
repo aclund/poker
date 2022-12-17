@@ -1,19 +1,35 @@
-Compile    = g++
-Libraries  =
-DebugFlag  = -g 
-#OPTFlag    = -O3
-POKERFiles  := $(shell ls *.cpp)
-POKERoFiles  = ${POKERFiles:.cpp=.o}
-HEADERFiles  = $(shell ls *.h)
+include compiler.spec
+include dependencies.make
 
-all: poker
+OBJECTS  = $(shell ls *cpp | sed 's/cpp/o/')
 
-poker:  $(POKERoFiles)
-	$(Compile) -o poker  $(POKERoFiles) $(OPTFlag) $(DebugFlag) $(Libraries)
+#-------------------------------------------------------------------------------
+#   Rule for building all programs
 
-$(POKERoFiles): %.o: %.cpp $(HEADERFiles)
-	$(Compile) $(OPTFlag) $(DebugFlag) -c $<
+all: $(PROGRAMS)
+	make $<
+
+$(PROGRAMS): %:
+	$(COMPILE) $(FLAGS) $(LIBRARIES) $^ -o $@
+
+$(OBJECTS): %.o: %.cpp
+	$(COMPILE) $(FLAGS) -c $<
+
+#-------------------------------------------------------------------------------
+#   Rule for cleaning
 
 clean:
-	rm -f *.o poker
+	rm -f *.o
+
+clean_all: clean
+	rm -f $(PROGRAMS)
 	touch *
+
+#-------------------------------------------------------------------------------
+#   Rule for compiler
+
+opt: clean
+	rm compiler.spec; ln -s compiler.opt compiler.spec
+
+debug: clean
+	rm compiler.spec; ln -s compiler.debug compiler.spec

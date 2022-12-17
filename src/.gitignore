@@ -1,2 +1,4 @@
 *.o
 poker
+poker_odds
+statistics.out
